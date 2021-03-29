@@ -1,0 +1,104 @@
+---
+title: "igem_part"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+
+```{r}
+no <- c(1, 2, 3, 4)
+team_name <- c("Team:Cornell", "Team:Harvard", "Team:Ionis Paris", "Team UPF Barcelona")
+project_title <- c("A Novel bacteria theraphy and mornitoring for metastatic breast cancer",
+                   "A COVID-19 Antibody Therapeutic Based on Machine Learning and DNA Origami Sequence Delivery",
+                   "An innovative Way to Fignt Against Antimicrobial Resistance",
+                   "An Artificial close-loop for hormonal homeostatic regulation")
+project_year <- c(2020, 
+                  2020,
+                  2020,
+                  2020)
+wiki_page <- c("https://2020.igem.org/Team:Cornell",
+               "https://2020.igem.org/Team:Harvard",
+               "https://2020.igem.org/Team:Ionis_Paris",
+               "https://2020.igem.org/Team:UPF_Barcelona Hypothyroidism")
+
+igem_team <- data.frame(no, 
+                        team_name, 
+                        project_title, 
+                        project_year, 
+                        wiki_page)
+#knitr::kable(std, format = "markdown")
+knitr::kable(igem_team)
+```
+
+
+
+```{r}
+no <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18)
+
+part_id <- c("BBa_K3419000", 
+             "BBa_K3419001",
+             "BBa_K3419002",
+             "BBa_K3419003",
+             "BBa_K3419004",
+             "BBa_K3419005",
+             "BBa_J61127",
+             "BBa_J61130",
+             "BBa_J61118",
+             "BBa_J61118",
+             "BBa_J1109",
+             "BBa_K3484000",
+             "BBa_K3484002",
+             "BBa_K3484006",
+             "BBa_K3484001",
+             "BBa_K3484003",
+             "BBa_K3484004",
+             "BBa_K3484005")
+part_name <- c("ASD", 
+               "Trichosanthin", 
+               "ASD with strong promoter", 
+               "Trichosanthin with stron promoter", 
+               "mCardinal with strong promoter", 
+               "Holin/Anti-Holin Kill switch with lactate inducible promoter", 
+               "mcpM", 
+               "mcpI", 
+               "mcpA", 
+               "mcpD", 
+               "mcpB", 
+               "Intein mediated T3 biosensor with sfGFP", 
+               "Intein mediated T3 biosensor with eGFP", 
+               "sfGFP with an ASV tag", 
+               "Transcriptional unit for the intein mediated T3 biosensor with sfGFP", 
+               "Transcriptional unit for the intein mediated T3 biosensor with sfGFP", 
+               "Produce sfGFP when a large enough concentration of lactone is present", 
+               "Produces lactone in presence of arabinose and in absence of glucose")
+part_type <- c("CDS", 
+               "CDS", 
+               "Cassette", 
+               "Cassette", 
+               "Cassette", 
+               "Cassette", 
+               "CDS", 
+               "CDS", 
+               "CDS", 
+               "CDS", 
+               "CDS", 
+               "Cassette", 
+               "Cassette", 
+               "CDS", 
+               "Cassette", 
+               "Cassette", 
+               "Cassette", 
+               "Cassette")
+team_id <- c(1, 1, 1, 1, 1, 1, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4)
+
+igem_part <- data.frame(no,
+                        part_id, 
+                        part_name,
+                        part_type, 
+                        team_id)
+
+knitr::kable(igem_part)
+
+```
+
