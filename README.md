@@ -2,4 +2,4 @@
 
 *[iGEM part](igemE_part.html)
 
-*[igem Promoter](Promoter.Rmd)
+*[igem Promoter](Promoter.html)
