@@ -1,0 +1,92 @@
+---
+title: "Promoter_2nd"
+output: html_document
+---
+
+```{r}
+no <- c(1)
+team_name <- c("Team:Aboa")
+project_title <- c("Expanded genetic code to control antibody orientation in immunodiagnostics")
+project_year <- c(2019)
+wiki_page <- c("https://2019.igem.org/Team:Aboa")
+
+igem_team <- data.frame(no, 
+                        team_name, 
+                        project_title, 
+                        project_year, 
+                        wiki_page)
+#knitr::kable(std, format = "markdown")
+knitr::kable(igem_team)
+```
+
+```{r}
+id <- 1:2
+BBid <- c("BBa_R0010", "BBa_K5670184")
+type <- c("Promoter", "Reporter")
+link <- c("http://parts.igem.org/Part:BBa_R0010",
+           "http://parts.igem.org/Part:BBa_K5670184")
+backbone <- rep("-", length(id))
+device_id <- paste0("D", sprintf("%04d", rep(1, length(id))) )
+team_name <- rep("Aboa", length(id))
+user <- rep("th-kim310", length(id))
+
+igem_part <- data.frame(id, BBid, type, link, backbone, device_id, team_name, user)
+#knitr::kable(igem_part)
+igem_part
+
+```
+
+```{r}
+id <- c(1:6)
+strain <- rep("E.coli", length(id))
+indc <- rep("IPTG", length(id))
+conc <- c(0, 0, "0.5 mM", "0.5 mM", "1 mM", "1 mM")
+value <- c(4.5, 1.2, 4.5, 1.4, 4.5, 1.4)
+valunit <- c("RFP", "GFP", "RFP", "GFP", "RFP", "GFP")
+incubhr <- rep("O/N", length(id))
+incubtemp <- rep("37", length(id))
+device_id <- rep("D0001", length(id))
+link <- c("https://https://2019.igem.org/Team:Aboa/Contribution",
+           "https://https://2019.igem.org/Team:Aboa/Contribution",
+          "https://https://2019.igem.org/Team:Aboa/Contribution",
+          "https://https://2019.igem.org/Team:Aboa/Contribution",
+          "https://https://2019.igem.org/Team:Aboa/Contribution",
+          "https://https://2019.igem.org/Team:Aboa/Contribution")
+
+
+igem_obs <- data.frame(id, strain, indc, conc, value,
+                        valunit, incubhr, incubtemp,
+                       device_id, link)
+#knitr::kable(igem_obs)
+igem_obs
+```
+
+```{r}
+library(tidyverse)
+
+igem_promoter <- igem_part %>% 
+  left_join(igem_team, by="team_name") %>% 
+  left_join(igem_obs, by="device_id")
+  
+igem_promoter
+```
+
+
+```{r}
+colnames(igem_promoter)
+```
+
+```{r}
+plot_data <- igem_promoter %>% 
+  filter(BBid=="BBa_R0010") %>% 
+  select(valunit, conc, value) %>% 
+  mutate(valunit=factor(valunit), conc=factor(conc))
+
+plot_data
+
+ggplot(plot_data, aes(x=conc, y=value, fill=valunit)) +
+  geom_bar(stat="identity", position=position_dodge(width=0.5), width=0.4) +
+  scale_fill_manual(values=c("#ce1212", "#4a47a3")) +
+  theme_bw()
+```
+
