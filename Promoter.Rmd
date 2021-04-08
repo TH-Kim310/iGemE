@@ -157,3 +157,29 @@ igem_obs
 
 ```
 ![Result](제목 없음.jpg){width=50%}
+
+
+```{r}
+library(tidyverse)
+
+igem_promoter <- igem_part %>% 
+  left_join(igem_team, by="team_name") %>% 
+  left_join(igem_obs, by="device_id")
+
+igem_promoter
+```
+
+```{r}
+colnames(igem_promoter)
+
+plot_data <- igem_promoter %>% 
+  filter(BBid=="BBa_R0010") %>% 
+  select(strain, conc, value) %>% 
+  mutate(strain=factor(strain), conc=factor(conc))
+
+ggplot(plot_data, aes(x=strain, y=value, fill=conc)) +
+  geom_bar(stat="identity", position=position_dodge(width=0.5), width=0.4) +
+  scale_fill_manual(values=c("#ce1212", "#4a47a3")) +
+  theme_bw()
+```
+
