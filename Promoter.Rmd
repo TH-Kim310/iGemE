@@ -156,7 +156,6 @@ igem_obs <- data.frame(id, strain, indc, conc, value,
 igem_obs
 
 ```
-![Result](제목 없음.jpg){width=50%}
 
 
 ```{r}
