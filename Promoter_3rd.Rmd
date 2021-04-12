@@ -1,0 +1,126 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r}
+library(dplyr)
+library(tidyverse)
+
+id <- c("1")
+team_name <- c("Team:Aboa")
+project <- c("Expanded genetic code to control antibody orientation in immunodiagnostics")
+year <- c("2019")
+wiki <- c("https://2019.igem.org/Team:Aboa")
+
+igem_team1 <- data.frame(id, 
+                        team_name, 
+                        project, 
+                        year, 
+                        wiki)
+
+id <- c("1")
+team_name <- c("Hong_Kong_HKU")
+project <- c("Engineered Salmonella Typhimurium for enhanced drug delivery and cancer stem cell targeting")
+year <- c("2019")
+wiki <- c("https://2019.igem.org/Team:Hong_Kong_HKU")
+
+igem_team2 <- data.frame(id, 
+                        team_name, 
+                        project, 
+                        year, 
+                        wiki)
+
+igem_team <- bind_rows(igem_team1, igem_team2, .id="id")
+
+igem_team
+```
+
+```{r}
+id <- 1:2
+BBid <- c("BBa_R0010", "BBa_K5670184")
+type <- c("Promoter", "Reporter")
+link <- c("http://parts.igem.org/Part:BBa_R0010",
+           "http://parts.igem.org/Part:BBa_K5670184")
+backbone <- rep("-", length(id))
+device_id <- paste0("D", sprintf("%04d", rep(1, length(id))) )
+team_name <- rep("Aboa", length(id))
+user <- rep("th-kim310", length(id))
+
+igem_part1 <- data.frame(id, BBid, type, link, backbone, device_id, team_name, user)
+
+
+id <- 1:4
+BBid <- c("BBa_R0010", "BBa_B0034", "BBa_E1010", "BBa_B0054")
+type <- c("Promoter", "RBS", "RFP", "Terminator")
+link <- c("http://parts.igem.org/Part:BBa_R0010",
+           "http://parts.igem.org/Part:BBa_B0034",
+           "http://parts.igem.org/Part:BBa_E1010",
+           "http://parts.igem.org/Part:BBa_B0054")
+backbone <- rep("-", length(id))
+device_id <- paste0("D", sprintf("%04d", rep(1, length(id))) )
+team_name <- rep("Hong_Kong_HKU", length(id))
+user <- rep("th-kim310", length(id))
+
+igem_part2 <- data.frame(id, BBid, type, link, backbone, device_id, team_name, user)
+
+igem_part <-bind_rows(igem_part1, igem_part2, .id="id") 
+
+igem_part
+
+
+```
+
+
+```{r}
+id <- c(1:6)
+strain <- rep("E. coli", length(id))
+indc <- rep("IPTG", length(id))
+conc <- c(0, 0, 0.5, 0.5, 1, 1)
+concunit <- rep("mM", 6)
+value <- c(4.5, 1.2, 4.2, 1.4, 3.9, 1.4)
+valunit <- c("Relative fluorescence_RFP", "Relative fluorescence_GFP", 
+             "Relative fluorescence_RFP", "Relative fluorescence_GFP", 
+             "Relative fluorescence_RFP", "Relative fluorescence_GFP")
+incubhr <- rep("O/N", length(id))
+incubtemp <- rep("37", length(id))
+device_id <- rep("D0001", length(id))
+link <- c("https://https://2019.igem.org/Team:Aboa/Contribution",
+           "https://https://2019.igem.org/Team:Aboa/Contribution",
+          "https://https://2019.igem.org/Team:Aboa/Contribution",
+          "https://https://2019.igem.org/Team:Aboa/Contribution",
+          "https://https://2019.igem.org/Team:Aboa/Contribution",
+          "https://https://2019.igem.org/Team:Aboa/Contribution")
+
+
+igem_obs1 <- data.frame(id, strain, indc, conc, concunit, value,
+                        valunit, incubhr, incubtemp,
+                       device_id, link)
+
+
+id <- c(1:4)
+strain <- c("E. coli", "E. coli", "S. Typhi", "S. Typhi")
+indc <- rep("IPTG", length(id))
+conc <- c(0, 10, 0, 10)
+concunit <- rep("mM",4)
+value <- c(5000, 15000, 15000, 15000)
+valunit <- rep("Fluorescence", length(id))
+incubhr <- rep("-", length(id))
+incubtemp <- rep("-", length(id))
+device_id <- rep("D0001", length(id))
+link <- c("https://2019.igem.org/Team:Hong_Kong_HKU/Characterization",
+           "https://2019.igem.org/Team:Hong_Kong_HKU/Characterization",
+           "https://2019.igem.org/Team:Hong_Kong_HKU/Characterization",
+           "https://2019.igem.org/Team:Hong_Kong_HKU/Characterization")
+
+
+igem_obs2 <- data.frame(id, strain, indc, conc, concunit, value,
+                        valunit, incubhr, incubtemp,
+                       device_id, link)
+
+igem_obs <- bind_rows(igem_obs1, igem_obs2, .id="id")
+igem_obs
+```
+
+
+
