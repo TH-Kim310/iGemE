@@ -39,8 +39,6 @@ download.file(url, paste0(destdir, "treebird19.xlsx"))
 
 
 ```{r}
-getwd()
-
 #Teams
 igem_team1 <- read_excel(paste0(destdir, "th-kim310.xlsx"), sheet = 1, skip = 0, col_names = T)
 igem_team2 <- read_excel(paste0(destdir, "jinjulee119.xlsx"), sheet = 1, skip = 0, col_names = T)
@@ -57,7 +55,10 @@ igem_team6$id <- as.character(igem_team6$id, na.omit=F)
 igem_team7$id <- as.character(igem_team7$id, na.omit=F)
 igem_team <- bind_rows(igem_team1, igem_team2, igem_team3, igem_team4, igem_team5, igem_team6, igem_team7)
 igem_team
+```
 
+
+```{r}
 #Parts
 igem_part1 <- read_excel(paste0(destdir, "th-kim310.xlsx"), sheet = 2, skip = 0, col_names = T)
 igem_part2 <- read_excel(paste0(destdir, "jinjulee119.xlsx"), sheet = 2, skip = 0, col_names = T)
@@ -73,8 +74,9 @@ igem_part6$id <- as.character(igem_part6$id, na.omit=F)
 igem_part7$id <- as.character(igem_part7$id, na.omit=F)
 igem_part <- bind_rows(igem_part1, igem_part2, igem_part3, igem_part4, igem_part5, igem_part6, igem_part7)
 igem_part
+```
 
-
+```{r}
 #Obs
 igem_obs1 <- read_excel(paste0(destdir, "th-kim310.xlsx"), sheet = 3, skip = 0, col_names = T)
 igem_obs2 <- read_excel(paste0(destdir, "jinjulee119.xlsx"), sheet = 3, skip = 0, col_names = T)
