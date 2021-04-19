@@ -1,0 +1,103 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+개인이 만들어 놓은 git repository
+https://github.com/-ID-/igemE
+
+```{r}
+library(tidyverse)
+library(readxl)
+
+?download.file
+url <- "https://github.com/TH-Kim310/igemE/raw/main/igem_promoters.xlsx"
+dir.create("download")
+dir.create("download/promoters")
+download.file(url, "download/promoters/th-kim310.xlsx")
+
+destdir <- "download/promoters/"
+
+url <-  "https://github.com/jinjulee119/igemE2/raw/main/igem_promoters.xlsx"
+download.file(url, paste0(destdir, "jinjulee119.xlsx"))
+
+url <-  "https://github.com/Lelp27/igemE/raw/main/promoter_3nd.xlsx"
+download.file(url, paste0(destdir, "Lelp27.xlsx"))
+
+url <-  "https://github.com/aputron/igemE/raw/main/iGEM_team.xlsx"
+download.file(url, paste0(destdir, "aputron.xlsx"))
+
+url <-  "https://github.com/gpemelianov/igemE/raw/main/igem_promoter.xlsx"
+download.file(url, paste0(destdir, "gpemelianov.xlsx"))
+
+url <-  "https://github.com/Yoo-BH/igemE/raw/main/igem_promoter.xlsx"
+download.file(url, paste0(destdir, "yoo-bh.xlsx"))
+
+url <-  "https://github.com/treebird19/igemE/raw/main/igem_promoters.xlsx"
+download.file(url, paste0(destdir, "treebird19.xlsx"))
+```
+
+
+```{r}
+getwd()
+
+#Teams
+igem_team1 <- read_excel(paste0(destdir, "th-kim310.xlsx"), sheet = 1, skip = 0, col_names = T)
+igem_team2 <- read_excel(paste0(destdir, "jinjulee119.xlsx"), sheet = 1, skip = 0, col_names = T)
+igem_team3 <- read_excel(paste0(destdir, "Lelp27.xlsx"), sheet = 1, skip = 0, col_names = T)
+igem_team4 <- read_excel(paste0(destdir, "aputron.xlsx"), sheet = 1, skip = 0, col_names = T)
+igem_team5 <- read_excel(paste0(destdir, "gpemelianov.xlsx"), sheet = 1, skip = 0, col_names = T)
+igem_team6 <- read_excel(paste0(destdir, "yoo-bh.xlsx"), sheet = 1, skip = 0, col_names = T)
+igem_team7 <- read_excel(paste0(destdir, "treebird19.xlsx"), sheet = 1, skip = 0, col_names = T)
+igem_team1$id <- as.character(igem_team1$id, na.omit=F)
+igem_team2$id <- as.character(igem_team2$id, na.omit=F)
+igem_team3$id <- as.character(igem_team3$id, na.omit=F)
+igem_team5$id <- as.character(igem_team5$id, na.omit=F)
+igem_team6$id <- as.character(igem_team6$id, na.omit=F)
+igem_team7$id <- as.character(igem_team7$id, na.omit=F)
+igem_team <- bind_rows(igem_team1, igem_team2, igem_team3, igem_team4, igem_team5, igem_team6, igem_team7)
+igem_team
+
+#Parts
+igem_part1 <- read_excel(paste0(destdir, "th-kim310.xlsx"), sheet = 2, skip = 0, col_names = T)
+igem_part2 <- read_excel(paste0(destdir, "jinjulee119.xlsx"), sheet = 2, skip = 0, col_names = T)
+igem_part3 <- read_excel(paste0(destdir, "Lelp27.xlsx"), sheet = 2, skip = 0, col_names = T)
+igem_part4 <- read_excel(paste0(destdir, "aputron.xlsx"), sheet = 2, skip = 0, col_names = T)
+igem_part5 <- read_excel(paste0(destdir, "gpemelianov.xlsx"), sheet = 2, skip = 0, col_names = T)
+igem_part6 <- read_excel(paste0(destdir, "yoo-bh.xlsx"), sheet = 2, skip = 0, col_names = T)
+igem_part7 <- read_excel(paste0(destdir, "treebird19.xlsx"), sheet = 2, skip = 0, col_names = T)
+igem_part1$id <- as.character(igem_part1$id, na.omit=F)
+igem_part2$id <- as.character(igem_part2$id, na.omit=F)
+igem_part5$id <- as.character(igem_part5$id, na.omit=F)
+igem_part6$id <- as.character(igem_part6$id, na.omit=F)
+igem_part7$id <- as.character(igem_part7$id, na.omit=F)
+igem_part <- bind_rows(igem_part1, igem_part2, igem_part3, igem_part4, igem_part5, igem_part6, igem_part7)
+igem_part
+
+
+#Obs
+igem_obs1 <- read_excel(paste0(destdir, "th-kim310.xlsx"), sheet = 3, skip = 0, col_names = T)
+igem_obs2 <- read_excel(paste0(destdir, "jinjulee119.xlsx"), sheet = 3, skip = 0, col_names = T)
+igem_obs3 <- read_excel(paste0(destdir, "Lelp27.xlsx"), sheet = 3, skip = 0, col_names = T)
+igem_obs4 <- read_excel(paste0(destdir, "aputron.xlsx"), sheet = 3, skip = 0, col_names = T)
+igem_obs5 <- read_excel(paste0(destdir, "gpemelianov.xlsx"), sheet = 3, skip = 0, col_names = T)
+igem_obs6 <- read_excel(paste0(destdir, "yoo-bh.xlsx"), sheet = 3, skip = 0, col_names = T)
+igem_obs7 <- read_excel(paste0(destdir, "treebird19.xlsx"), sheet = 3, skip = 0, col_names = T)
+igem_obs1$conc <- as.numeric(igem_obs1$conc, na.omit=F)
+igem_obs7$conc <- as.numeric(igem_obs7$conc, na.omit=F)
+igem_obs1$incubhr <- as.numeric(igem_obs1$incubhr, na.omit=F)
+igem_obs2$incubhr <- as.numeric(igem_obs2$incubhr, na.omit=F)
+igem_obs4$incubhr <- as.numeric(igem_obs4$incubhr, na.omit=F)
+igem_obs6$incubhr <- as.numeric(igem_obs6$incubhr, na.omit=F)
+igem_obs7$incubhr <- as.numeric(igem_obs7$incubhr, na.omit=F)
+igem_obs1$id <- as.character(igem_obs1$id, na.omit=F)
+igem_obs2$id <- as.character(igem_obs2$id, na.omit=F)
+igem_obs3$id <- as.character(igem_obs3$id, na.omit=F)
+igem_obs5$id <- as.character(igem_obs5$id, na.omit=F)
+igem_obs6$id <- as.character(igem_obs6$id, na.omit=F)
+igem_obs7$id <- as.character(igem_obs7$id, na.omit=F)
+igem_obs3$incubtemp <- as.character(igem_obs3$incubtemp, na.omit=F)
+igem_obs <- bind_rows(igem_obs1, igem_obs2, igem_obs3, igem_obs4, igem_obs5, igem_obs6, igem_obs7)
+igem_obs
+```
+
