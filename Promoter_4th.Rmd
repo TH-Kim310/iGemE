@@ -9,9 +9,9 @@ read.csv("igem_promoter.csv")
 ```{r}
 library(readxl)
 
-igem_team <- read_excel("엑셀.xlsx", sheet=1, skip = 0, col_names=T)
-igem_part <- read_excel("엑셀.xlsx", sheet=2, skip=0, col_name=T)
-igem_obs <-read_excel("엑셀.xlsx", sheet=3, skip=0, col_name=T)
+igem_team <- read_excel("igem_promoters.xlsx", sheet=1, skip = 0, col_names=T)
+igem_part <- read_excel("igem_promoters.xlsx", sheet=2, skip=0, col_name=T)
+igem_obs <-read_excel("igem_promoters.xlsx", sheet=3, skip=0, col_name=T)
 igem_team
 igem_part
 igem_obs
