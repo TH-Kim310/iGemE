@@ -1,0 +1,65 @@
+---
+title: "Untitled"
+output: html_document
+---
+```{r}
+ids <- c("hayleykim97", 
+         "th-kim310",
+         "Lelp27",
+         "aputron",
+         "gpemelianov",
+         "yoo-bh",
+         "seokjin-oh",
+         "treebird19",
+         "jinjulee119")
+
+homedirs <- c(rep("igemE", 9), "igemE2") 
+
+destdir <- "download/promoters/"
+
+i <- 2
+url <-  paste0("https://github.com/", ids[i], "/", homedirs[i], "/raw/main/igem_promoters.xlsx")
+destfile <- paste0(destdir, ids[i], ".xlsx")
+download.file(url, destfile)
+
+i <- 2
+for(i in 1:length(ids)){
+  url <-  paste0("https://github.com/", ids[i], "/", homedirs[i], "/raw/main/igem_promoters.xlsx")
+  destfile <- paste0(destdir, ids[i], ".xlsx")
+  try(download.file(url, destfile))
+  cat(i, "\n");flush.console()
+}
+
+```
+```{r}
+filenames <- dir(path = destdir, pattern = "*.xlsx")
+
+tmp1 <- list()
+tmp2 <- list()
+tmp3 <- list()
+
+for(i in 1:length(filenames)) {
+  destfile <- paste0(destdir, filenames[i])
+  tmp1[[i]] <- read_excel(destfile, sheet = 1, skip = 0, col_names = T)
+  tmp2[[i]] <- read_excel(destfile, sheet = 2, skip = 0, col_names = T)
+  tmp3[[i]] <- read_excel(destfile, sheet = 3, skip = 0, col_names = T)
+}
+igem_team <- do.call(bind_rows, tmp1)
+igem_part <- do.call(bind_rows, tmp2)
+igem_obs <- do.call(bind_rows, tmp3)
+
+igem_team
+igem_part
+igem_obs
+
+```
+
+```{r}
+tmp3[[1]]$incubhr <- as.numeric(gsub(pattern = " hrs", replacement="", x = tmp3[[1]]$incubhr))
+```
+
+```{r}
+
+
+```
+
